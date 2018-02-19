@@ -1,0 +1,50 @@
+<mat-sidenav-container class="home-container">
+  
+  <mat-sidenav mode="side" opened class="home-sidenav">
+    <mat-toolbar color="primary" class="home-header">Time Logger</mat-toolbar>
+    <ul class="nav">
+    	<li *ngFor="let menuItem of menuItems" routerLinkActive="active" (click)=onSelect(menuItem.class)>
+    		<a [routerLink]="[menuItem.path]">{{menuItem.title}}</a>
+    	</li>
+    </ul>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+  	<div *ngIf="selectedMenuItem=='users'">
+  		<app-user></app-user>
+  	</div>
+
+  	<div *ngIf="selectedMenuItem=='workLogs'">
+  		<div>
+		  <mat-toolbar color="primary">
+		    <span><mat-icon>mood</mat-icon></span>
+
+		    <span>Yay, Material in Angular 2!</span>
+
+		    <button mat-icon-button [mat-menu-trigger-for]="menu">
+		      <mat-icon>more_vert</mat-icon>
+		    </button>
+		  </mat-toolbar>
+		  <mat-menu x-position="before" #menu="matMenu">
+		    <button mat-menu-item>Option 1</button>
+		    <button mat-menu-item>Option 2</button>
+		  </mat-menu>
+
+		  <mat-card>
+		    <button mat-button>All</button>
+		    <button mat-raised-button>Of</button>
+		    <button mat-raised-button color="primary">The</button>
+		    <button mat-raised-button color="accent">Buttons</button>
+		  </mat-card>
+
+
+		  <span class="done">
+		    <button mat-fab>
+		      <mat-icon>check circle</mat-icon>
+		    </button>
+		  </span>
+		</div>
+  	</div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

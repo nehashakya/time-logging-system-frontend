@@ -1,0 +1,40 @@
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    position: fixed;
+    width: 50%;
+    top: 64px;
+    left: 200px;
+}
+
+th {
+  border: 1px solid #dddddd;
+  background-color: #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+
+tr:hover td {
+  background:#4E5066;
+  color:#FFFFFF;
+  border-top: 1px solid #22262e;
+}
+
+.capitalize {
+   text-transform: capitalize;
+}
+
+.add {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+}

@@ -1,0 +1,31 @@
+
+<div class="mat-elevation-z8">
+	<mat-toolbar color="primary">
+		<span>Users Profile</span>
+	</mat-toolbar>
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Username</th>
+				</tr>
+			</thead>
+			<tbody class="table-hover">
+				<tr *ngFor = "let user of users; let i = index" [attr.data-index]="i">
+					<td>{{i+1}}</td>
+					<td class="capitalize">{{user.firstname}} {{user.lastname}}</td>
+					<td>{{user.username}}</td>					
+				</tr>
+			</tbody>
+		</table>
+</div>
+
+
+<div>
+	<span class="add">
+	    <button (click)="openAddUserDialog()" mat-fab>
+	      <mat-icon>add circle</mat-icon>
+	    </button>
+	</span>
+</div>
