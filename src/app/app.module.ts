@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 
 import { UserService } from './user.service';
+import { WorkLogService } from './work-log.service';
 import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.component';
 import { LoginComponent } from './login/login.component';
 import { WorkLogComponent } from './work-log/work-log.component';
@@ -37,6 +38,7 @@ import { WorkLogComponent } from './work-log/work-log.component';
   ],
   providers: [
   	UserService,
+    WorkLogService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [AddUserDialogComponent]

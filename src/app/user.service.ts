@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { Http, Headers, Response, RequestOptions, URLSearchParams } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -11,6 +11,7 @@ import { User } from './user';
 export class UserService {
 	private loginUserUrl = 'http://localhost:3000/login';
 	private baseUsersUrl = 'http://localhost:3000/users';
+	private baseUserUrl = 'http://localhost:3000/users/:id';
 
 	token: string;
 	
@@ -43,6 +44,16 @@ export class UserService {
 	getUsers(): Observable<User[]> {
 		console.log("Service layer: Getting users ...");
 		return this.http.get(this.baseUsersUrl)
+			.map((response: Response)=> response.json());
+	}
+
+	getUser(id: string): Observable<User> {
+		console.log("Service layer: Getting user ...");
+		let params: URLSearchParams = new URLSearchParams();
+		params.set('id', id);
+		let requestOptions = new RequestOptions();
+		requestOptions.search = params;
+		return this.http.get(this.baseUserUrl, requestOptions)
 			.map((response: Response)=> response.json());
 	}
 

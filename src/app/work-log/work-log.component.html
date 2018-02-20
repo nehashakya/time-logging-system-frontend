@@ -1,3 +1,28 @@
-<p>
-  work-log works!
-</p>
+
+
+<div>
+	<mat-card>
+		<table class="center">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Date</th>
+						<th>Title of Work</th>
+						<th>Description of Work</th>
+						<th>Hours worked</th>
+					</tr>
+				</thead>
+				<tbody class="table-hover">
+					<tr *ngFor = "let workLog of workLogs; let i = index" [attr.data-index]="i">
+						<td>{{i+1}}</td>
+						<td class="capitalize">{{workLog.user}} {{workLog.lastName}}</td>
+						<td>{{workLog.date}}</td>
+						<td>{{workLog.titleOfWork}}</td>	
+						<td>{{workLog.descriptionOfWork}}</td>
+						<td>{{workLog.noOfHours}}</td>				
+					</tr>
+				</tbody>
+			</table>
+	</mat-card>
+</div>
