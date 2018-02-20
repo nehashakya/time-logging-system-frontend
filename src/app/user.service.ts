@@ -14,6 +14,7 @@ export class UserService {
 	private baseUserUrl = 'http://localhost:3000/users/:id';
 
 	token: string;
+	user: User;
 	
 	constructor(private http: Http) { }
 
@@ -28,10 +29,8 @@ export class UserService {
           if (token) {
               // set token property
               this.token = token;
-
               // store username and jwt token in local storage to keep user logged in between page refreshes
-              localStorage.setItem('currentUser', JSON.stringify({ username, token }));
-
+              localStorage.setItem('currentUser', JSON.stringify(response.json()));
               // return true to indicate successful login
               return true;
           } else {
@@ -56,6 +55,19 @@ export class UserService {
 		return this.http.get(this.baseUserUrl, requestOptions)
 			.map((response: Response)=> response.json());
 	}
+
+	// getUserByUsername(): Observable<User> {
+	// 	console.log("Service layer: getUserByUsername ...");
+	// 	let params: URLSearchParams = new URLSearchParams();
+	// 	params.set('username', JSON.parse(localStorage.getItem('currentUser')).username);
+	// 	console.log("params:"+ params);
+	// 	let requestOptions = new RequestOptions();
+	// 	requestOptions.search = params;
+	// 	return this.http.get(this.baseUsersUrl, requestOptions)
+	// 		.map((response: Response)=> {
+	// 			console.log("-------------------"+response.json().username);
+	// 			return response.json()});
+	// }
 
 	addUser(user: User): Observable<User>{
 		console.log("Service layer: Adding user ...");

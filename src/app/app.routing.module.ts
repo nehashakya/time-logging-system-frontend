@@ -11,8 +11,8 @@ import { WorkLogComponent } from './work-log/work-log.component';
 const routes: Routes = [
 	{	path: '', component: LoginComponent	},
 	{	path: 'home', component: HomeComponent},
-	{	path: 'users', component: UserComponent	},
-	{	path: 'workLogs', component: WorkLogComponent },
+	{	path: 'home/users', component: UserComponent	},
+	{	path: 'home/workLogs', component: WorkLogComponent },
 ];
 
 @NgModule({

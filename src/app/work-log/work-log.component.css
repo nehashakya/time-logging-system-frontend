@@ -41,3 +41,10 @@ tr:hover td {
 .capitalize {
    text-transform: capitalize;
 }
+
+.add {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+}

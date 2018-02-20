@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="submit(form)">
+	<h1>Add Work Log</h1>
+	<hr>
+	<mat-dialog-content>
+		<div class = "component">
+			<label>Date:</label>
+	      	<input matInput formControlName="date">
+	    </div>
+	    <div class = "component">
+			<label>Title of work:</label>
+	      	<input matInput formControlName="titleOfWork">
+	    </div>
+	    <div class = "component">
+			<label>Description of work:</label>
+	      	<input matInput formControlName="descriptionOfWork">
+	    </div>
+	    <div class = "component">
+			<label>No of hours:</label>
+	      	<input matInput formControlName="noOfHours">
+	    </div>
+	</mat-dialog-content>
+
+	<mat-dialog-actions>
+	  <button type="submit" mat-button>Add</button>
+	  <button type="button" (click)=cancel() mat-button>Cancel</button>
+	</mat-dialog-actions>
+</form>

@@ -17,6 +17,7 @@ import { WorkLogService } from './work-log.service';
 import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.component';
 import { LoginComponent } from './login/login.component';
 import { WorkLogComponent } from './work-log/work-log.component';
+import { WorkLogDialogComponent } from './work-log-dialog/work-log-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { WorkLogComponent } from './work-log/work-log.component';
     HomeComponent,
     AddUserDialogComponent,
     LoginComponent,
-    WorkLogComponent
+    WorkLogComponent,
+    WorkLogDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,6 @@ import { WorkLogComponent } from './work-log/work-log.component';
     WorkLogService,
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddUserDialogComponent]
+  entryComponents: [AddUserDialogComponent, WorkLogDialogComponent]
 })
 export class AppModule { }
