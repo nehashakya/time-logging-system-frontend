@@ -1,10 +1,12 @@
+import { User } from './user';
+
 export class WorkLog{
 	id: number;
 	titleOfWork : String;
     descriptionOfWork : String;
     noOfHours : Number;
     date: String;
-    user : string;
+    user : User;
     firstName : String;
     lastName : String;
 

@@ -10,8 +10,6 @@ import { WorkLog } from './work-log';
 @Injectable()
 export class WorkLogService {
 	private allWorkLogsUrl = "http://localhost:3000/workLogs";
-	private userSpecificWorkLogsUrl = "http://localhost:3000/users/" 
-		+ JSON.parse(localStorage.getItem('currentUser')).userId + "/workLogs";
 
   constructor(private http : Http) { }
 
@@ -23,8 +21,9 @@ export class WorkLogService {
 
   getWorkLogsById(): Observable<WorkLog[]>{
   	console.log("Service layer: Getting user specific work logs ...");
-
-	return this.http.get(this.userSpecificWorkLogsUrl)
+  	var userSpecificWorkLogsUrl = "http://localhost:3000/users/" 
+		+ JSON.parse(localStorage.getItem('currentUser')).userId + "/workLogs";
+	return this.http.get(userSpecificWorkLogsUrl)
 			.map((response: Response)=> response.json());
   }
 
@@ -34,8 +33,10 @@ export class WorkLogService {
 	params.set('username', JSON.parse(localStorage.getItem('currentUser')).username);
 	let requestOptions = new RequestOptions();
 	requestOptions.search = params;
+	var userSpecificWorkLogsUrl = "http://localhost:3000/users/" 
+		+ JSON.parse(localStorage.getItem('currentUser')).userId + "/workLogs";
 
-	return this.http.get(this.userSpecificWorkLogsUrl, requestOptions)
+	return this.http.get(userSpecificWorkLogsUrl, requestOptions)
 			.map((response: Response)=> response.json());
   }
 
@@ -43,7 +44,9 @@ export class WorkLogService {
 		console.log("Service layer: Adding worklog ...");
 		let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-		return this.http.post(this.userSpecificWorkLogsUrl, workLog, options)
+        var userSpecificWorkLogsUrl = "http://localhost:3000/users/" 
+		+ JSON.parse(localStorage.getItem('currentUser')).userId + "/workLogs";
+		return this.http.post(userSpecificWorkLogsUrl, workLog, options)
 			.map((response: Response)=> response.json());
 	}
 

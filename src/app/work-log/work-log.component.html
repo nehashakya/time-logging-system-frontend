@@ -1,7 +1,40 @@
+<div *ngIf="currentUser.username === 'admin' else elseBlock">
+	<div>
+		<mat-card>
+			<table class="center">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>UserId</th>
+						<th>Date</th>
+						<th>Title of Work</th>
+						<th>Description of Work</th>
+						<th>Hours worked</th>
+					</tr>
+				</thead>
+				<tbody class="table-hover">
+					<tr *ngFor = "let workLog of workLogs; let i = index" [attr.data-index]="i">
+						<td>{{i+1}}</td>
+						<td>{{workLog.user}}</td>
+						<td>{{workLog.date}}</td>
+						<td>{{workLog.titleOfWork}}</td>	
+						<td>{{workLog.descriptionOfWork}}</td>
+						<td>{{workLog.noOfHours}}</td>				
+					</tr>
+				</tbody>
+			</table>
+		</mat-card>
+	</div>	
+</div>
 
-<div>
-	<mat-card>
-		<table class="center">
+
+<ng-template #elseBlock>
+	<div>
+		<mat-card class="matcardheader">
+			<h1>{{currentUser.firstname}}, here is your worklog.</h1>
+		</mat-card>
+		<mat-card class="matcardcontent">
+			<table class="center">
 				<thead>
 					<tr>
 						<th>ID</th>
@@ -12,22 +45,23 @@
 					</tr>
 				</thead>
 				<tbody class="table-hover">
-					<tr *ngFor = "let workLog of workLogs; let i = index" [attr.data-index]="i">
+					<tr *ngFor = "let uswl of userSpecificWorkLogs; let i = index" [attr.data-index]="i">
 						<td>{{i+1}}</td>
-						<td>{{workLog.date}}</td>
-						<td>{{workLog.titleOfWork}}</td>	
-						<td>{{workLog.descriptionOfWork}}</td>
-						<td>{{workLog.noOfHours}}</td>				
+						<td>{{uswl.date}}</td>
+						<td>{{uswl.titleOfWork}}</td>	
+						<td>{{uswl.descriptionOfWork}}</td>
+						<td>{{uswl.noOfHours}}</td>				
 					</tr>
 				</tbody>
 			</table>
-	</mat-card>
-</div>
+		</mat-card>
+	</div>
 
-<div>
-	<span class="add">
-	    <button (click)="openAddWorkLogDialog()" mat-fab>
-	      <mat-icon>add circle</mat-icon>
-	    </button>
-	</span>
-</div>
+	<div>
+		<span class="add">
+		    <button (click)="openAddWorkLogDialog()" mat-fab>
+		      <mat-icon>add circle</mat-icon>
+		    </button>
+		</span>
+	</div>
+</ng-template>

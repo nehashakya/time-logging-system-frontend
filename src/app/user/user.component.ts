@@ -16,6 +16,7 @@ import { AddUserDialogComponent } from '../add-user-dialog/add-user-dialog.compo
 })
 export class UserComponent implements OnInit {
 	users: User[];
+  user: User;
   addUserDialogRef: MatDialogRef<AddUserDialogComponent>;
 
   	constructor(private userService: UserService, 
@@ -23,12 +24,18 @@ export class UserComponent implements OnInit {
     }
 
   	ngOnInit() {
-  		this.getUsers();
+  		this.getUser();
+      this.getUsers();
   	}
 
   	getUsers(): void {
         this.userService.getUsers()
             .subscribe(users => this.users = users);
+    }
+
+    getUser(): void{
+      this.userService.getCurrentUser()
+        .subscribe(user => this.user = user);
     }
 
     openAddUserDialog(){
@@ -42,6 +49,10 @@ export class UserComponent implements OnInit {
         .pipe(filter(user => user))
         .subscribe(user => 
           this.users.push(user));
+    }
+
+    openEditUserDialog(){
+      
     }
 
     

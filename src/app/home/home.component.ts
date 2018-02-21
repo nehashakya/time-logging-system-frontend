@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { User } from '../user';
+import { UserService } from '../user.service';
+
 export interface RouteInfo {
     path: string;
     title: string;
@@ -7,8 +10,9 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-    { path: '/users', title: 'Users Profile', class: 'users' },
-    { path: '/workLogs', title: 'Work Log', class: 'workLogs' }
+    { path: '/users', title: 'USER PROFILE', class: 'users' },
+    { path: '/workLogs', title: 'WORK LOG', class: 'workLogs' },
+    { path: '/logout', title: 'LOG OUT', class: 'logout' }
 ]
 
 @Component({
@@ -19,9 +23,11 @@ export const ROUTES: RouteInfo[] = [
 export class HomeComponent implements OnInit {
 	public menuItems: any[];
   selectedMenuItem: string;
-  constructor() { }
+  currentUser : User;
+  constructor(private userService: UserService) { }
 
 	ngOnInit() {
+        this.userService.getCurrentUser().subscribe(u => this.currentUser = u);
         this.menuItems = ROUTES.filter(menuItem => menuItem);
         console.log("==" + this.selectedMenuItem);
 	}

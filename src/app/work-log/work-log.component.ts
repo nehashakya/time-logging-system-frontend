@@ -19,7 +19,8 @@ import { WorkLogDialogComponent } from '../work-log-dialog/work-log-dialog.compo
 })
 export class WorkLogComponent implements OnInit {
 	workLogs : WorkLog[];
-	user : User;
+	userSpecificWorkLogs : WorkLog[];
+	currentUser : User;
 	addWorkLogDialogRef: MatDialogRef<WorkLogDialogComponent>;
 
 	constructor(private workLogService: WorkLogService, 
@@ -27,17 +28,19 @@ export class WorkLogComponent implements OnInit {
 		private addWorkLogDialog: MatDialog) { }
 
 	ngOnInit() {
+		this.userService.getCurrentUser().subscribe(u => this.currentUser = u);
+		this.getWorkLogs();
 		this.getUserSpecificWorkLogs();
 	}
 
 	getWorkLogs(): void {
 		this.workLogService.getWorkLogs()
-			.subscribe(workLogs => {this.workLogs = workLogs; console.log(":::" + this.workLogs)});
+			.subscribe(workLogs => this.workLogs = workLogs);
 	}
 
 	getUserSpecificWorkLogs(): void{
 		this.workLogService.getWorkLogsById()
-					.subscribe(workLogs => this.workLogs = workLogs);
+					.subscribe(userSpecificWorkLogs => this.userSpecificWorkLogs = userSpecificWorkLogs);
 
 	}
 
@@ -49,8 +52,8 @@ export class WorkLogComponent implements OnInit {
 
       this.addWorkLogDialogRef
         .afterClosed()
-        .pipe(filter(workLog => workLog))
-        .subscribe(workLog => 
-          this.workLogs.push(workLog));
+        .pipe(filter(userSpecificWorkLog => userSpecificWorkLog))
+        .subscribe(userSpecificWorkLog => 
+          this.userSpecificWorkLogs.push(userSpecificWorkLog));
     }
 }

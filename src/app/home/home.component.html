@@ -1,21 +1,50 @@
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
 <mat-sidenav-container class="home-container">
   
-  <mat-sidenav mode="side" opened class="home-sidenav">
-    <mat-toolbar color="primary" class="home-header">Time Logger</mat-toolbar>
-    <ul class="nav">
-    	<li *ngFor="let menuItem of menuItems" routerLinkActive="active" (click)=onSelect(menuItem.class)>
-    		<a [routerLink]="[menuItem.path]">{{menuItem.title}}</a>
-    	</li>
-    </ul>
-  </mat-sidenav>
+  	<mat-sidenav mode="side" opened class="home-sidenav">
+	    <mat-toolbar color="primary" class="home-header">Time Logger</mat-toolbar>
+	    <br><br>
+	    <ul class="nav">
+	    	<li *ngFor="let menuItem of menuItems" routerLinkActive="active" (click)=onSelect(menuItem.class)>
+	    		<a [routerLink]="[menuItem.path]">{{menuItem.title}}</a>
+	    	</li>
+	    </ul>
+  	</mat-sidenav>
 
-  <mat-sidenav-content>
-  	<div *ngIf="selectedMenuItem=='users'">
+  	<mat-sidenav-content>
+	  	<ng-container *ngIf="selectedMenuItem=='users'; else workLogBlock">
+	  		<app-user></app-user>
+	  	</ng-container>
+		<ng-template #workLogBlock>
+			<ng-container *ngIf="selectedMenuItem=='workLogs'; else baseBlock">
+				<app-work-log></app-work-log>
+			</ng-container>
+		</ng-template>
+		<ng-template #baseBlock>
+			<div class="container">
+			  <div class="jumbotron">
+			  	<br>
+			    <h1>Welcome {{currentUser.firstname}}</h1> 
+			    <br><br>
+			    <p>Check user profile for detailed view of user.</p> 
+			    <p>Check work logs to know how much you've worked!</p>
+			  </div>
+			</div>
+		</ng-template>
+	 </mat-sidenav-content>
+</mat-sidenav-container>
+
+  	<!-- <div *ngIf="selectedMenuItem=='users' else elseBlock">
   		<app-user></app-user>
   	</div>
 
   	<div *ngIf="selectedMenuItem=='workLogs'">
-  		<app-work-log></app-work-log>
+  		<app-work-log></app-work-log> -->
   		<!-- <div>
 		  <mat-toolbar color="primary">
 		    <span><mat-icon>mood</mat-icon></span>
@@ -45,7 +74,5 @@
 		    </button>
 		  </span>
 		</div> -->
-  	</div>
-  </mat-sidenav-content>
-
-</mat-sidenav-container>
+  <!-- 	</div> -->
+ 

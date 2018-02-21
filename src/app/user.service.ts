@@ -11,12 +11,14 @@ import { User } from './user';
 export class UserService {
 	private loginUserUrl = 'http://localhost:3000/login';
 	private baseUsersUrl = 'http://localhost:3000/users';
-	private baseUserUrl = 'http://localhost:3000/users/:id';
 
 	token: string;
+	private loggedIn = false;
 	user: User;
 	
-	constructor(private http: Http) { }
+	constructor(private http: Http) {
+		this.loggedIn = !!localStorage.getItem('currentUser');
+	}
 
 	loginUser(username:string, password:string): Observable<boolean>{
 		let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -29,6 +31,7 @@ export class UserService {
           if (token) {
               // set token property
               this.token = token;
+              localStorage.removeItem('currentUser');
               // store username and jwt token in local storage to keep user logged in between page refreshes
               localStorage.setItem('currentUser', JSON.stringify(response.json()));
               // return true to indicate successful login
@@ -40,20 +43,29 @@ export class UserService {
         });
 	}
 
+	logout() {
+		localStorage.removeItem('currentUser');
+	    this.loggedIn = false;
+	}
+
+	isLoggedIn() {
+		return this.loggedIn;
+	}
+
 	getUsers(): Observable<User[]> {
 		console.log("Service layer: Getting users ...");
 		return this.http.get(this.baseUsersUrl)
 			.map((response: Response)=> response.json());
 	}
 
-	getUser(id: string): Observable<User> {
+	getCurrentUser(): Observable<User> {
 		console.log("Service layer: Getting user ...");
-		let params: URLSearchParams = new URLSearchParams();
-		params.set('id', id);
-		let requestOptions = new RequestOptions();
-		requestOptions.search = params;
-		return this.http.get(this.baseUserUrl, requestOptions)
-			.map((response: Response)=> response.json());
+		var baseUserUrl = 'http://localhost:3000/users/' + JSON.parse(localStorage.getItem('currentUser')).userId;
+		return this.http.get(baseUserUrl)
+			.map((response: Response)=> {
+				console.log(response.json());
+				return response.json();
+			});
 	}
 
 	// getUserByUsername(): Observable<User> {
@@ -76,5 +88,13 @@ export class UserService {
 		return this.http.post(this.baseUsersUrl, user, options)
 			.map((response: Response)=> response.json());
 	}
+
+	// editUser(user: User): Observable<User>{
+	// 	console.log("Service layer: Editing user ...");
+	// 	let headers = new Headers({ 'Content-Type': 'application/json' });
+ //        let options = new RequestOptions({ headers: headers });
+	// 	return this.http.put(this.baseUsersUrl, user, options)
+	// 		.map((response: Response)=> response.json());
+	// }
 
 }

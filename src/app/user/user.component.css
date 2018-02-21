@@ -38,3 +38,15 @@ tr:hover td {
   right: 20px;
   color: white;
 }
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  margin: 70px auto;
+  text-align: center;
+  font-family: arial, sans-serif;
+}
+
+.details {
+  margin-top: 50px;
+}
