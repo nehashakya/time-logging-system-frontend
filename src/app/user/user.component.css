@@ -2,12 +2,14 @@
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
+    width: 64%;
     position: fixed;
-    width: 50%;
-    top: 64px;
-    left: 200px;
 }
-
+table.center {
+    margin-top: 90px;
+    margin-left:auto;
+    margin-right:50px;
+}
 th {
   border: 1px solid #dddddd;
   background-color: #dddddd;
@@ -32,11 +34,21 @@ tr:hover td {
    text-transform: capitalize;
 }
 
-.add {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
   color: white;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  background-color: #3F51B5;
+}
+
+button: hover, a:hover {
+  opacity: 0.7;
 }
 
 .card {
@@ -47,6 +59,42 @@ tr:hover td {
   font-family: arial, sans-serif;
 }
 
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+hr {
+  border-top: 3px double #1565C0;
+}
+
+.title {
+  color: grey;
+  font-size: 20px;
+  text-align: left;
+  margin-left: 30px;
+}
+
+.add{
+  position: fixed;
+  bottom: 40px;
+  right: 150px;
+}
+
 .details {
   margin-top: 50px;
 }
+
+.matcardcontent{
+  max-width: 80%;
+  margin: 4em auto;
+  text-align: center;
+  height: 600px;
+}
+
+mat-card h2{
+  text-align: left;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  float: left;
+}
+

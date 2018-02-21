@@ -1,3 +1,39 @@
-<p>
-  edit-user-dialog works!
-</p>
+<form *ngIf="currentUser" [formGroup]="form" (ngSubmit)="submit(form)">
+	<h2>Edit Exisitng User</h2>
+	<hr>
+	<mat-dialog-content>
+		<div class = "component">
+			<label>First Name:</label>
+	      	<input matInput formControlName="firstname">
+	    </div>
+	    <div class = "component">
+			<label>Last Name:</label>
+	      	<input matInput formControlName="lastname">
+	    </div>
+	    <div class = "component">
+			<label>Userame:</label>
+	      	<input matInput formControlName="username">
+	    </div>
+	    <div class = "component">
+			<label>Email:</label>
+	      	<input matInput formControlName="email">
+	    </div>
+	    <div class = "component">
+			<label>Contact Info:</label>
+	      	<input matInput formControlName="contactinfo">
+	    </div>
+	    <div class = "component">
+			<label>Department:</label>
+	      	<input matInput formControlName="department">
+	    </div>
+	    <div class = "component">
+			<label>Designation:</label>
+	      	<input matInput formControlName="designation">
+	    </div>
+	</mat-dialog-content>
+
+	<mat-dialog-actions>
+	  <button type="submit" mat-button>Add</button>
+	  <button type="button" (click)=cancel() mat-button>Cancel</button>
+	</mat-dialog-actions>
+</form>

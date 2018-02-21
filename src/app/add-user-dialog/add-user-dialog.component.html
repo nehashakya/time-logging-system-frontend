@@ -1,5 +1,5 @@
 <form [formGroup]="form" (ngSubmit)="submit(form)">
-	<h1>Add New User</h1>
+	<h2>Add New User</h2>
 	<hr>
 	<mat-dialog-content>
 		<div class = "component">
@@ -17,6 +17,22 @@
 	    <div class = "component">
 			<label>Password:</label>
 	      	<input matInput formControlName="password">
+	    </div>
+	    <div class = "component">
+			<label>Email:</label>
+	      	<input matInput formControlName="email">
+	    </div>
+	    <div class = "component">
+			<label>Contact Info:</label>
+	      	<input matInput formControlName="contactinfo">
+	    </div>
+	    <div class = "component">
+			<label>Department:</label>
+	      	<input matInput formControlName="department">
+	    </div>
+	    <div class = "component">
+			<label>Designation:</label>
+	      	<input matInput formControlName="designation">
 	    </div>
 	</mat-dialog-content>
 

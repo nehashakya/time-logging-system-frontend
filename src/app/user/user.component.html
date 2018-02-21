@@ -1,58 +1,67 @@
 <div *ngIf="user.username === 'admin' else elseBlock">
-	<div class="mat-elevation-z8">
-		<mat-toolbar color="primary">
-			<span>Users Profile</span>
-		</mat-toolbar>
-			<table>
+	<div>
+		<mat-card class="matcardcontent">
+			<h2 class="capitalize">Hi {{user.firstname}}, </h2><h2>here are all your users.</h2>
+			<table class="center">
 				<thead>
 					<tr>
 						<th>ID</th>
 						<th>Name</th>
 						<th>Username</th>
+						<th>Email</th>
+						<th>Contact Info</th>
+						<th>Department</th>
+						<th>Designation</th>
 					</tr>
 				</thead>
 				<tbody class="table-hover">
 					<tr *ngFor = "let user of users; let i = index" [attr.data-index]="i">
 						<td>{{i+1}}</td>
 						<td class="capitalize">{{user.firstname}} {{user.lastname}}</td>
-						<td>{{user.username}}</td>					
+						<td>{{user.username}}</td>
+						<td>{{user.email}}</td>
+						<td class="capitalize">{{user.contactinfo}}</td>
+						<td class="capitalize">{{user.department}}</td>
+						<td class="capitalize">{{user.designation}}</td>					
 					</tr>
 				</tbody>
 			</table>
+		</mat-card>
 	</div>
-
-
 	<div>
 		<span class="add">
-		    <button (click)="openAddUserDialog()" mat-fab>
+		    <button mat-raised-button color="accent" (click)="openAddUserDialog()">
 		      <mat-icon>add circle</mat-icon>
 		    </button>
 		</span>
 	</div>
 </div>
 
+
+
 <ng-template #elseBlock>
-	<div>
-		<div class="mat-elevation-z8">
-			<mat-toolbar color="primary">
-				<span>User Profile</span>
-			</mat-toolbar>
-			<mat-card class="card">
-				<div>
-					<h1>{{user.firstname}} {{user.lastname}}</h1>
-				</div>
-				<hr>
-				<div class="details">
-					<span>Username:</span>
-					<label>{{user.username}}</label>
-				</div>
-			</mat-card>
+	<div>		
+		<div class="card">
 			<div>
-				<span class="add">
-				    <button mat-raised-button color="accent">Edit</button>
-				</span>
+				<br><br>
 			</div>
+			<h1 class="capitalize">{{user.firstname}} {{user.lastname}}</h1>
+			<hr>
+			<div class="details">
+				<p class="title">Username : {{user.username}}</p>
+				<p class="title">Email : {{user.email}}</p>
+				<p class="title">Contact Info : {{user.contactinfo}}</p>
+				<p class="title capitalize">Department : {{user.department}}</p>
+				<p class="title capitalize">Designation : {{user.designation}}</p>
+				<br><br>
+			</div>
+			<!-- <div>
+				<span class="edit">
+				    <button (click)="openEditUserDialog()">Edit</button>
+				</span>
+			</div> -->
 		</div>
+		
 	</div>
 </ng-template>
 

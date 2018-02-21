@@ -22,7 +22,11 @@ export class AddUserDialogComponent implements OnInit {
   		firstname: '',
       lastname: '',
       username: '',
-      password: '' 
+      password: '',
+      email:'',
+      contactinfo:'',
+      department:'',
+      designation:'' 
   	})
   }
 
@@ -30,7 +34,11 @@ export class AddUserDialogComponent implements OnInit {
     let user = new User(this.form.get('firstname').value, 
                           this.form.get('lastname').value, 
                           this.form.get('username').value,
-                          this.form.get('password').value);
+                          this.form.get('password').value,
+                          this.form.get('email').value,
+                          this.form.get('contactinfo').value,
+                          this.form.get('department').value,
+                          this.form.get('designation').value);
     console.log("Received: "+ user.firstname);
     this.userService.addUser(user).subscribe();
     this.addUserDialogRef.close(user);

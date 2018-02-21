@@ -59,7 +59,7 @@ export class UserService {
 	}
 
 	getCurrentUser(): Observable<User> {
-		console.log("Service layer: Getting user ...");
+		console.log("Service layer: Getting current user ...");
 		var baseUserUrl = 'http://localhost:3000/users/' + JSON.parse(localStorage.getItem('currentUser')).userId;
 		return this.http.get(baseUserUrl)
 			.map((response: Response)=> {
@@ -89,12 +89,14 @@ export class UserService {
 			.map((response: Response)=> response.json());
 	}
 
-	// editUser(user: User): Observable<User>{
-	// 	console.log("Service layer: Editing user ...");
-	// 	let headers = new Headers({ 'Content-Type': 'application/json' });
- //        let options = new RequestOptions({ headers: headers });
-	// 	return this.http.put(this.baseUsersUrl, user, options)
-	// 		.map((response: Response)=> response.json());
-	// }
+	editUser(user: User): Observable<User>{
+		console.log("Service layer: Editing user ...");
+		let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        let editUserUrl = "http://localhost:3000/users/" + user.id;
+		return this.http.put(editUserUrl, user, options)
+			.map((response: Response)=> response.json());
+	}
 
 }

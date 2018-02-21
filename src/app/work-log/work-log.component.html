@@ -1,11 +1,12 @@
 <div *ngIf="currentUser.username === 'admin' else elseBlock">
 	<div>
-		<mat-card>
+		<mat-card class="matcardcontent">
+			<h2 class="capitalize">Hi {{currentUser.firstname}},</h2><h2> here's all the worklogs of users.</h2>
 			<table class="center">
 				<thead>
 					<tr>
 						<th>ID</th>
-						<th>UserId</th>
+						<th>Name</th>
 						<th>Date</th>
 						<th>Title of Work</th>
 						<th>Description of Work</th>
@@ -15,7 +16,7 @@
 				<tbody class="table-hover">
 					<tr *ngFor = "let workLog of workLogs; let i = index" [attr.data-index]="i">
 						<td>{{i+1}}</td>
-						<td>{{workLog.user}}</td>
+						<td>{{workLog.user.firstname}} {{workLog.user.lastname}}</td>
 						<td>{{workLog.date}}</td>
 						<td>{{workLog.titleOfWork}}</td>	
 						<td>{{workLog.descriptionOfWork}}</td>
@@ -30,10 +31,8 @@
 
 <ng-template #elseBlock>
 	<div>
-		<mat-card class="matcardheader">
-			<h1>{{currentUser.firstname}}, here is your worklog.</h1>
-		</mat-card>
 		<mat-card class="matcardcontent">
+			<h2 class="capitalize">Hi {{currentUser.firstname}},</h2><h2> here's your worklog.</h2>
 			<table class="center">
 				<thead>
 					<tr>

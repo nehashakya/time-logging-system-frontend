@@ -8,12 +8,12 @@
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    position: fixed;
-    width: 69%;
-    top: 114px;
+     position: fixed;
+    width: 64%;
 }
 
 table.center {
+    margin-top: 90px;
     margin-left:auto;
     margin-right:50px;
 }
@@ -46,19 +46,18 @@ tr:hover td {
   position: fixed;
   bottom: 40px;
   right: 150px;
-  color: white;
 }
 
-.matcardheader{
-  max-width: 80%;
-  margin: 1em auto;
-  text-align: center;
-  height: 20px;
+mat-card h2{
+  text-align: left;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  float: left;
 }
 
 .matcardcontent{
   max-width: 80%;
-  margin: auto;
+  margin: 4em auto;
   text-align: center;
   height: 600px;
 }

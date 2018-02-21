@@ -7,8 +7,6 @@ export class WorkLog{
     noOfHours : Number;
     date: String;
     user : User;
-    firstName : String;
-    lastName : String;
 
     constructor( date: String, titleOfWork: string, descriptionOfWork: string, noOfHours: Number){
     	this.date = date;

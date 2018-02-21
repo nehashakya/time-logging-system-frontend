@@ -1,0 +1,16 @@
+.component{
+	padding: 8px;
+	font-family: arial, sans-serif;
+}
+
+label{
+	font-weight: bold;
+}
+
+button{
+	font-weight: bold;
+}
+
+hr{
+  border-top: 3px double #1565C0;
+}

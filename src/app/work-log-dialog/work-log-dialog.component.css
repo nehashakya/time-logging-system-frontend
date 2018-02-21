@@ -5,6 +5,7 @@
 
 label{
 	font-weight: bold;
+	margin-right: 30px; 
 }
 
 button{
@@ -12,9 +13,5 @@ button{
 }
 
 hr{
-	border: none;
-    height: 1px;
-    /* Set the hr color */
-    color: #333; /* old IE */
-    background-color: #333; /* Modern Browsers */
+  border-top: 3px double #1565C0;
 }

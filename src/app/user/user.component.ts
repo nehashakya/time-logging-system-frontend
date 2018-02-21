@@ -8,6 +8,7 @@ import { User } from '../user';
 import { UserService } from '../user.service';
 
 import { AddUserDialogComponent } from '../add-user-dialog/add-user-dialog.component';
+import { EditUserDialogComponent } from '../edit-user-dialog/edit-user-dialog.component';
 
 @Component({
   selector: 'app-user',
@@ -18,9 +19,11 @@ export class UserComponent implements OnInit {
 	users: User[];
   user: User;
   addUserDialogRef: MatDialogRef<AddUserDialogComponent>;
+  editUserDialogRef: MatDialogRef<EditUserDialogComponent>;
 
   	constructor(private userService: UserService, 
-      private addUserDialog: MatDialog) {
+      private addUserDialog: MatDialog,
+      private editUserDialog: MatDialog) {
     }
 
   	ngOnInit() {
@@ -44,15 +47,21 @@ export class UserComponent implements OnInit {
           hasBackdrop: false
         });
 
-      this.addUserDialogRef
-        .afterClosed()
+      this.addUserDialogRef.afterClosed()
         .pipe(filter(user => user))
         .subscribe(user => 
           this.users.push(user));
     }
 
     openEditUserDialog(){
-      
+      this.editUserDialogRef = this.editUserDialog
+        .open(EditUserDialogComponent, {
+            hasBackdrop: false
+        });
+
+      this.editUserDialogRef.afterClosed()
+        .pipe(filter(user => user))
+        .subscribe(user => this.user = user);  
     }
 
     
