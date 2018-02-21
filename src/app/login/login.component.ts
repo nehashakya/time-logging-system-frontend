@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
 		this.userService.loginUser(this.username, this.password).subscribe((result) => {
 	      if (result) {
 	        this.router.navigate(['home']);
+	      } else {
+	      	console.log("User login unsuccessful.");
 	      }
 	    });
 	}
